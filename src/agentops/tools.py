@@ -7,6 +7,7 @@ with an explicit error, which the executor records instead of crashing or guessi
 
 from __future__ import annotations
 
+import math
 from dataclasses import dataclass
 from datetime import date, timedelta
 
@@ -79,13 +80,13 @@ def run_tool(weather: Weather, name: str, args: dict) -> float | str:
         raise ToolError(f"missing argument: {e}") from e
     days = _days(weather, city, start, end)
     if name == "rainfall_total":
-        return round(sum(x["precip"] for x in days), 1)
+        return round(math.fsum(x["precip"] for x in days), 1)
     if name == "frost_days":
         return sum(1 for x in days if x["tmin"] < 0)
     if name == "growing_degree_days":
-        return round(sum(max(0.0, (x["tmax"] + x["tmin"]) / 2 - 10) for x in days), 1)
+        return round(math.fsum(max(0.0, (x["tmax"] + x["tmin"]) / 2 - 10) for x in days), 1)
     if name == "water_balance":
-        return round(sum(x["precip"] - x["et0"] for x in days), 1)
+        return round(math.fsum(x["precip"] - x["et0"] for x in days), 1)
     # hottest_day
     a = _parse(start)
     best = max(range(len(days)), key=lambda i: days[i]["tmax"])
