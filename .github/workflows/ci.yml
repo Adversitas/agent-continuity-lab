@@ -1,0 +1,38 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        python-version: ["3.10", "3.12"]
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: ${{ matrix.python-version }}
+          cache: pip
+      # no LLM in CI: tests use scripted backends and the rule-based degraded mode
+      - run: pip install -e ".[dev]"
+      - run: ruff check .
+      - run: ruff format --check .
+      - run: pytest -q
+      - name: Golden set must be reproducible from the committed weather snapshot
+        run: |
+          agentops --cases ci-evalset.jsonl evalset
+          diff <(python -c "import json;[print(json.loads(l)['cid'], json.loads(l)['answer']) for l in open('ci-evalset.jsonl')]") \
+               <(python -c "import json;[print(json.loads(l)['cid'], json.loads(l)['answer']) for l in open('data/evalset.jsonl')]")
+      - name: Rule-based degraded mode runs without any model
+        run: agentops --reports ci-reports run rules
+      - name: Gate and continuity replay from the committed traces must reproduce the reports
+        run: |
+          agentops gate Qwen2.5-0.5B-Instruct Qwen2.5-1.5B-Instruct
+          agentops gate Qwen2.5-1.5B-Instruct Qwen2.5-3B-Instruct
+          agentops continuity --primary Qwen2.5-1.5B-Instruct --fallback Qwen2.5-0.5B-Instruct --degraded rules
+          agentops report
+          git diff --exit-code reports/continuity.json reports/gate_*.json

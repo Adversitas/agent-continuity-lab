@@ -1,0 +1,127 @@
+{
+ "primary": "Qwen2.5-1.5B-Instruct",
+ "fallback": "Qwen2.5-0.5B-Instruct",
+ "degraded": "rules",
+ "rows": [
+  {
+   "strategy": "primary only",
+   "p_fail": 0.0,
+   "success": 0.9054054054054057,
+   "p95_latency_s": 20.999557790003013
+  },
+  {
+   "strategy": "primary only",
+   "p_fail": 0.05,
+   "success": 0.8594594594594596,
+   "p95_latency_s": 20.969004931002562
+  },
+  {
+   "strategy": "primary only",
+   "p_fail": 0.2,
+   "success": 0.7162162162162162,
+   "p95_latency_s": 20.676881844500066
+  },
+  {
+   "strategy": "primary only",
+   "p_fail": 0.5,
+   "success": 0.45270270270270263,
+   "p95_latency_s": 19.628308451829884
+  },
+  {
+   "strategy": "primary only",
+   "p_fail": 1.0,
+   "success": 0.0,
+   "p95_latency_s": 8.0
+  },
+  {
+   "strategy": "primary + 1 retry",
+   "p_fail": 0.0,
+   "success": 0.9054054054054057,
+   "p95_latency_s": 20.999557790003013
+  },
+  {
+   "strategy": "primary + 1 retry",
+   "p_fail": 0.05,
+   "success": 0.9022522522522525,
+   "p95_latency_s": 21.42767505017118
+  },
+  {
+   "strategy": "primary + 1 retry",
+   "p_fail": 0.2,
+   "success": 0.866216216216216,
+   "p95_latency_s": 23.72949388700406
+  },
+  {
+   "strategy": "primary + 1 retry",
+   "p_fail": 0.5,
+   "success": 0.6657657657657657,
+   "p95_latency_s": 25.58515687450363
+  },
+  {
+   "strategy": "primary + 1 retry",
+   "p_fail": 1.0,
+   "success": 0.0,
+   "p95_latency_s": 17.0
+  },
+  {
+   "strategy": "+ fallback model",
+   "p_fail": 0.0,
+   "success": 0.9054054054054057,
+   "p95_latency_s": 20.999557790003013
+  },
+  {
+   "strategy": "+ fallback model",
+   "p_fail": 0.05,
+   "success": 0.9027027027027029,
+   "p95_latency_s": 21.606702892169896
+  },
+  {
+   "strategy": "+ fallback model",
+   "p_fail": 0.2,
+   "success": 0.881981981981982,
+   "p95_latency_s": 26.157611345835555
+  },
+  {
+   "strategy": "+ fallback model",
+   "p_fail": 0.5,
+   "success": 0.7099099099099099,
+   "p95_latency_s": 29.74936023850052
+  },
+  {
+   "strategy": "+ fallback model",
+   "p_fail": 1.0,
+   "success": 0.0,
+   "p95_latency_s": 26.0
+  },
+  {
+   "strategy": "+ rule-based degraded mode",
+   "p_fail": 0.0,
+   "success": 0.9054054054054057,
+   "p95_latency_s": 20.999557790003013
+  },
+  {
+   "strategy": "+ rule-based degraded mode",
+   "p_fail": 0.05,
+   "success": 0.9027027027027029,
+   "p95_latency_s": 21.606702892169896
+  },
+  {
+   "strategy": "+ rule-based degraded mode",
+   "p_fail": 0.2,
+   "success": 0.8896396396396395,
+   "p95_latency_s": 26.157616222168965
+  },
+  {
+   "strategy": "+ rule-based degraded mode",
+   "p_fail": 0.5,
+   "success": 0.8144144144144145,
+   "p95_latency_s": 29.74936023850052
+  },
+  {
+   "strategy": "+ rule-based degraded mode",
+   "p_fail": 1.0,
+   "success": 0.7027027027027025,
+   "p95_latency_s": 26.000050825008657
+  }
+ ]
+}

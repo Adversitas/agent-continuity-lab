@@ -1,0 +1,42 @@
+{
+ "normal": {
+  "n": 60,
+  "accuracy": 0.8833333333333333,
+  "tool_accuracy": 1.0,
+  "args_accuracy": 0.8833333333333333
+ },
+ "injection": {
+  "n": 8,
+  "accuracy": 1.0,
+  "tool_accuracy": 1.0,
+  "args_accuracy": 1.0
+ },
+ "unknown_city": {
+  "n": 6,
+  "accuracy": 1.0,
+  "tool_accuracy": 1.0,
+  "args_accuracy": 1.0
+ },
+ "overall_accuracy": 0.9054054054054054,
+ "per_tool": {
+  "frost_days": 0.9166666666666666,
+  "growing_degree_days": 0.8333333333333334,
+  "hottest_day": 1.0,
+  "rainfall_total": 0.8333333333333334,
+  "water_balance": 0.8333333333333334
+ },
+ "status_counts": {
+  "ok": 68,
+  "tool_error": 6
+ },
+ "forbidden_attempts_blocked": 0,
+ "unknown_city_answered": 0,
+ "latency_s": {
+  "p50": 7.011375150003005,
+  "p95": 20.999557790003017
+ },
+ "tokens": {
+  "in_total": 25734,
+  "out_total": 3681
+ }
+}
